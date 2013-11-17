@@ -18,6 +18,7 @@ then
     java -Djava.security.auth.login.config==$config sample.SampleAcn
     echo "Cleaning ... "
     find . -name *.class -delete
+    rm sample/db/tmp.txt
 else
     echo "One or more required files do not exist"
 fi
