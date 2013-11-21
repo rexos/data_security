@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>02239 Data Security - JAAS Authorization Lab</title></head>
+
+<body bgcolor="#ffffff">
+
+<h1>JAAS Authorization Framework</h1>
+
+<h2>Goal</h2>
+
+<p>The purpose of this laboratory exercise is threefold: to extend the
+understanding of the Java Authentication and Authorization Service
+(JAAS), to provide hands on experience with the specification and
+enforcement of authorization policies using JAAS and to provide an
+experimental framework for discussing access control
+policies. Students are assumed to have completed the <a 
+href="http://www.compute.dtu.dk/courses/02239/JAAS_Authentication/jaas_authentication.html">JAAS
+authentication lab</a>.</p>
+
+
+<h2>Access Control Scenario</h2>
+
+<p>Consider the scenario of a movie rental service that provides streaming of movies to subscribers. 
+There exist different subscriptions which provide access to different sets of movies, the subscription 
+types are: Basic -, Silver -, and Gold subscription. The Silver subscription includes the Basic 
+subscription and the Gold subscription allows the subscriber to see all movies. The access control 
+of these movies is managed by storing each category in a separate directory. </p>
+
+Assume Alice, Bob, Carol, David and Elisa subscribe to this streaming video service. Alice and Bob 
+have a Basic subscription, Carol has a Silver subscription and David has a Gold subscription. 
+Elisa is an admin user, who is allowed to both read and write in all directories. 
+
+
+<h2>Tasks</h2>
+
+This lab is based on the <a
+href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/jaas/tutorials/GeneralAcnAndAzn.html">JAAS
+Authorization Tutorial</a> from Oracle and a research
+paper describing <a
+href="http://www.research.ibm.com/people/k/koved/papers/acsac.pdf">User
+Authentication and Authorization in the Java Platform</a>. </p>
+
+The first task is to read through the tutorial and get a general idea
+of the architecture of the JAAS authorization framework.</p>
+
+The second task is to follow the steps in this tutorial to download,
+configure and run the sample code. At the end of this step you should
+have a running program that will authenticate the principal
+<i>testUser</i> with the password hard-coded into the Login Module and print the values of the system variables 
+<tt>java.home</tt> and <tt>user.home</tt> along with a statement as to whether or not you have a file named 
+<tt>foo.txt</tt> in the current directory. To avoid the hassle of writing the commands each time you want to test 
+your program, make a batch/shell file to execute the commands in the tutorial. You will find this batch/shell 
+file useful in your assignment too.</p>
+
+The third task is to make a rudimentary implementation of a movie database that conforms to the access control 
+scenario above. After authentication, your program should allow the subscriber to watch a movie according to 
+her subscription. You do not have to include actual movies in the movie database, simple text files with the 
+names of movies suffice (you are free to invent the names of movies that the service provides for each 
+subscription type). It is also not required to include functionality to show movies; it is enough to simply 
+return a message to the subscriber which indicates whether the requested movie is included in the subscription. 
+Your program should give an appropriate message to the user displaying the name of the subscription, the principal 
+requesting it and whether he/she is allowed to watch that movie or not. You should make sure that the files are 
+accessed through the code developed in this lab in the same way as illustrated in the 
+<a href="http://docs.oracle.com/javase/6/docs/technotes/guides/security/jaas/tutorials/GeneralAcnAndAzn.html">JAAS
+Authorization Tutorial</a>.</p>
+
+The fourth task is to define the necessary configuration
+files to simulate the access control scenario described above. This
+includes creation of the necessary users in your password file and
+definition of a policy file that enforces the policy defined in the
+access control scenario. </p>
+
+The fifth and final task is to consider how the identity based access control policy
+defined above may be supported on a code based access control framework, such as JAAS. 
+
+
+<h2>Documentation</h2>
+
+This lab is a mandatory part of the course, which means that you have
+to hand in a small report, which will be evaluated and counts toward
+your final grade. It is not necessary to document the first two tasks
+if they have been completed successfully, so the report should focus on the documentation of the final three tasks as outlined below.
+
+<ul>
+   <li><strong>Task 3:</strong> the report must present the design and
+   	implementation of the rudimentary print server.</li> 
+   <li><strong>Task 4;</strong> the report must explain how the access
+	control policy is enforced by the implementation and
+	configuration of the code developed in this lab. Part of this
+	task is also to demonstrate that the developed access control
+	mechanism works, e.g., by printing the name of the principal
+	along with each movie that she requests.</li>
+   <li><strong>Task 5;</strong> the discussion of how identity based
+	access control policy can be enforced on a code based access 
+	control frame work, must describe the difficulty of mapping 
+	principals and permissions between the two access control 
+	abstraction. You are encouraged to present examples from your 
+	own implementation of Task 4.</li> </ul>
+
+<p> The laboratory work will be individually assessed (i.e., you must
+each hand in your own individual report), but you are of course
+allowed to discuss this assignment with the other students in the
+course. Please indicate the name and student number of any student with
+whom you have had extensive discussions about the report in the
+Introduction. The full report should be limited to a maximum of 10
+pages, excluding the source code. 
+
+<h3>NOTE:</h3> 
+<ol>
+   <li>Your assignment must include a batch/shell file containing the commands, 
+	in appropriate order, to run your program. </li>
+   <li>You should not include all source files in the report, only the new
+       SampleLoginModule.java and any other files that have been modified.</li>
+</ol>
+
+The laboratory work should be conducted on the following Wednesdays:
+20 November and 27 November. The lab must be documented by
+a short report as described above. The report should be handed in
+electronically, using Campusnet, before 12.00 on Wednesday 4 December.</p>
+
+<h2>Useful Links</h2>
+
+<ul>
+  <li><a
+href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/jaas/tutorials/index.html">JAAS
+Tutorials</></li>
+  <li><a
+href="http://docs.oracle.com/javase/7/docs/technotes/guides/security/jaas/JAASRefGuide.html">Java
+Authentication and Authorization Service (JAAS) Reference Guide</a></li>
+</ul>
+
+
+
+
+
+<hr>
+
+Christian Damsgaard Jensen <a href="mailto:Christian.Jensen@imm.dtu.dk">
+Christian.Jensen@imm.dtu.dk</a> <br>
+Last modified 20 November 2012.
+
+</body></html>
+
