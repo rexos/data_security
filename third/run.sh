@@ -1,5 +1,7 @@
 #! /bin/bash
 
+
+
 javac ./sample/SampleAction.java ./sample/SampleAzn.java ./sample/module/SampleLoginModule.java ./sample/principal/SamplePrincipal.java
 
 jar -cvf SampleAzn.jar sample/SampleAzn.class sample/MyCallbackHandler.class
