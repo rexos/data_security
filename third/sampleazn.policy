@@ -1,0 +1,44 @@
+/** Java 2 Access Control Policy for the JAAS Sample Application **/
+
+/* grant the sample LoginModule permissions */
+grant codebase "file:./SampleLM.jar" {
+    permission javax.security.auth.AuthPermission "modifyPrincipals";
+    permission java.security.AllPermission;
+};
+
+grant codebase "file:./SampleAzn.jar" {
+   permission javax.security.auth.AuthPermission "createLoginContext.Sample";
+   permission javax.security.auth.AuthPermission "doAsPrivileged";
+};
+
+/** User-Based Access Control Policy for the SampleAction class
+ ** instantiated by SampleAzn 
+ **/
+
+grant codebase "file:./SampleAction.jar"{
+   permission java.io.FilePermission "sample/db/Basic", "read";
+   permission java.io.FilePermission "sample/db/Silver", "read";
+   permission java.io.FilePermission "sample/db/Gold", "read";
+   permission java.io.FilePermission "sample/db/Basic/*", "read";
+   permission java.util.PropertyPermission "user.dir", "read";
+   permission java.lang.RuntimePermission "readFileDescriptor";
+   permission java.lang.RuntimePermission "writeFileDescriptor";
+   permission javax.security.auth.AuthPermission "getSubject";
+};
+
+grant	codebase "file:./SampleAction.jar",
+	Principal sample.principal.SamplePrincipal "Silver" {
+   permission java.io.FilePermission "sample/db/Silver/*", "read";
+};
+
+grant	codebase "file:./SampleAction.jar",
+	Principal sample.principal.SamplePrincipal "Gold" {
+    permission java.io.FilePermission "sample/db/Gold/*", "read";
+};
+
+grant	codebase "file:./SampleAction.jar",
+	Principal sample.principal.SamplePrincipal "Admin" {
+    permission java.io.FilePermission "sample/db/Basic/*", "write,delete";
+    permission java.io.FilePermission "sample/db/Silver/*", "write,delete";
+    permission java.io.FilePermission "sample/db/Gold/*", "write,delete";
+};
